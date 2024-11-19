@@ -202,9 +202,19 @@ let successLogin = 1;
         }
 
         function toggleChat() {
-            alert('Chatbot functionality coming soon!');
+            const chatbox = document.getElementById('chatbox');
+            chatbox.classList.toggle('hidden');
         }
-
+        function sendMessage() {
+            const input = document.getElementById('chatInput');
+            const messages = document.getElementById('chatMessages');
+            if (input.value.trim()) {
+                messages.innerHTML += `<div class="mb-2"><strong>You:</strong> ${input.value}</div>`;
+                messages.innerHTML += `<div class="mb-2"><strong>Bot:</strong> I'm a simple bot. I can't help much yet!</div>`;
+                input.value = '';
+                messages.scrollTop = messages.scrollHeight;
+            }
+        }
         //Login script
         let users = [];
 

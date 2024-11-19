@@ -15,6 +15,26 @@
         .chatbot:hover { transform: scale(1.05); }
         .like-btn.liked { color: #ff4444; }
         .post-image { max-height: 400px; object-fit: cover; }
+        .chatbot {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            animation: bounce 2s infinite;
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        .toast {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            animation: slideIn 0.3s ease-in-out;
+        }
+        @keyframes slideIn {
+            from { transform: translateX(100%); }
+            to { transform: translateX(0); }
+        }
     </style>
 </head>
 <body class="bg-gray-100">
@@ -89,8 +109,24 @@
     </div>
 
     <!-- Chatbot -->
-    <div class="chatbot fixed bottom-4 right-4 bg-white rounded-lg shadow-lg p-4 cursor-pointer" onclick="toggleChat()">
-        <i class="bi bi-chat-dots text-2xl text-blue-600"></i>
+    <div class="chatbot">
+        <button onclick="toggleChat()" class="bg-blue-500 text-white p-4 rounded-full shadow-lg hover:bg-blue-600 transition">
+            <i class="bi bi-chat-dots text-2xl"></i>
+        </button>
+        <div id="chatbox" class="hidden bg-white rounded-lg shadow-lg p-4 mb-16 w-72">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="font-bold">Chat Assistant</h3>
+                <button onclick="toggleChat()" class="text-gray-500 hover:text-gray-700">×</button>
+            </div>
+            <div id="chatMessages" class="h-64 overflow-y-auto mb-4"></div>
+            <div class="flex">
+                <input type="text" id="chatInput" placeholder="Type a message..." 
+                       class="flex-1 p-2 border rounded-l">
+                <button onclick="sendMessage()" class="bg-blue-500 text-white px-4 rounded-r hover:bg-blue-600 transition">
+                    <i class="bi bi-send"></i>
+                </button>
+            </div>
+        </div>
     </div>
 
     <script src="scripts.js"></script>
